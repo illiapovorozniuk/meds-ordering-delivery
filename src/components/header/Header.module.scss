@@ -1,0 +1,18 @@
+.header {
+  color: #fff;
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .container {
+    position: relative;
+    max-width: 1320px;
+    padding: 20px;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+}

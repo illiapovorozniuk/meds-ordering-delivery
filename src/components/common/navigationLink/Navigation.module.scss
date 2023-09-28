@@ -1,0 +1,11 @@
+.navLink {
+  padding: 10px;
+  border: 1px solid rgba($color: rgb(0, 0, 0), $alpha: 0.1);
+  border-radius: 7px;
+  transition-duration: 0.15s;
+
+  &:hover {
+    background-color: rgba($color: rgb(0, 0, 0), $alpha: 0.1);
+    border: 1px solid rgba($color: rgb(0, 0, 0), $alpha: 0);
+  }
+}
