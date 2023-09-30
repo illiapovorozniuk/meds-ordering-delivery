@@ -1,0 +1,16 @@
+.catItem {
+  min-width: 300px;
+  transition-duration: 0.2s;
+  display: flex;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  align-items: center;
+  &:hover {
+    background-color: rgba($color: rgb(29, 167, 51), $alpha: 0.3);
+  }
+  img {
+    width: 55px;
+    padding-right: 20px;
+  }
+}
