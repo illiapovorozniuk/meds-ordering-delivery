@@ -1,6 +1,6 @@
 import { ICity } from "../src/types/city"
 
-export const cities: ICity[] = [
+export const citiesData: ICity[] = [
     {
         name: "Kyiv",
         region: "Kyivska"

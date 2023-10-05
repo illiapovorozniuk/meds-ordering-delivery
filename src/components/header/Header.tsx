@@ -37,7 +37,7 @@ const Header = () => {
         <NavigationButton onClick={changeIsSidebarLocation}>
           Location
         </NavigationButton>
-        <Sidebar isOpen={isSidebarLocationOpen} onClose={changeIsSidebarLocation} side={Sides.Left}>
+        <Sidebar isOpen={isSidebarLocationOpen} onClose={changeIsSidebarLocation} side={Sides.Left} title="Select your current city">
           <Location />
         </Sidebar>
       </div>
