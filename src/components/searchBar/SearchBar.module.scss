@@ -1,0 +1,27 @@
+$search-bar-height: 40px;
+$search-bar-padding: 10px;
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    height: $search-bar-height;
+    padding: $search-bar-padding;
+    background-color: #f2f2f2;
+    border-radius: $search-bar-height / 2;
+    transition: all 0.3s ease-in-out;
+
+    input {
+        border: none;
+        outline: none;
+        font-size: 16px;
+        width: 100%;
+        height: 100%;
+        padding: 0 $search-bar-padding;
+        background-color: transparent;
+    }
+}
+
+.extended {
+    width: 300px;
+    border-radius: $search-bar-height / 2 0 0 $search-bar-height / 2;
+}
