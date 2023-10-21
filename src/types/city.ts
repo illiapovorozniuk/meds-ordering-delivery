@@ -1,4 +1,4 @@
 export interface ICity {
-    name: string,
-    region: string;
+  name: string;
+  region: string;
 }
