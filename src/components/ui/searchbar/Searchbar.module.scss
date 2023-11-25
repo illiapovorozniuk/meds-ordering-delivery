@@ -1,0 +1,13 @@
+.searchbar {
+  margin-top: 10px;
+  background-color: rgb(188, 188, 188);
+  color: rgb(37, 190, 37);
+  border-radius: 10px;
+  padding: 1px;
+  padding-left: 5px;
+  &:focus {
+    background-color: #fff;
+    color: rgb(105, 180, 94);
+    outline: none;
+  }
+}

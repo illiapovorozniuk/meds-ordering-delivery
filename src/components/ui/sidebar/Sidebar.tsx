@@ -25,7 +25,7 @@ const Sidebar: FC<PropsWithChildren<SidebarProps>> = ({
             &times;
           </div>
         </div>
-        {children}
+        <div className={styles.content}>{children}</div>
       </div>
     </>
   );

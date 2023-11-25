@@ -18,3 +18,17 @@
     color: #555;
   }
 }
+.button {
+  background-color: green;
+  border-radius: 10px;
+  border: 2px solid white;
+  margin: 5px;
+  padding: 4px;
+  font:
+    0.6em "Fira Sans",
+    sans-serif;
+
+  &:disabled {
+    border: 1px solid red;
+  }
+}

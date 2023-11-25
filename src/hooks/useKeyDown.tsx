@@ -7,7 +7,6 @@ export function useKeyDown(key: string, action: KeyDonwAction) {
     function () {
       function callback(e: KeyboardEvent) {
         if (e.code.toLowerCase() === key.toLowerCase()) action();
-        console.log(key);
       }
       document.addEventListener("keydown", callback);
 
