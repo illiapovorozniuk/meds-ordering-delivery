@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-type KeyDonwAction = () => void;
+type KeyDownAction = () => void;
 
-export function useKeyDown(key: string, action: KeyDonwAction) {
+export function useKeyDown(key: string, action: KeyDownAction) {
   useEffect(
     function () {
       function callback(e: KeyboardEvent) {
