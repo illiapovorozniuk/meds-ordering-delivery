@@ -9,7 +9,7 @@ const Footer = () => {
           &copy; Unemployed students 2023
           {new Date().getFullYear() !== 2023
             ? `-${new Date().getFullYear()}`
-            : ""}
+            : null}
         </p>
       </div>
     </footer>
