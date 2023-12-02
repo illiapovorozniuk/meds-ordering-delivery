@@ -3,6 +3,7 @@ import { FC } from "react";
 import Link from "next/link";
 import styles from "./CatalogContentItem.module.scss";
 import { link } from "fs";
+import { v4 } from "uuid";
 
 const CatalogContentItem: FC<ICatalogContent> = ({
   title,
@@ -16,7 +17,7 @@ const CatalogContentItem: FC<ICatalogContent> = ({
       </h3>
       <ul>
         {subCategories.map((categ) => (
-          <li>
+          <li key={v4()}>
             <Link href={categ.subLink}>{categ.subTitle}</Link>
           </li>
         ))}
