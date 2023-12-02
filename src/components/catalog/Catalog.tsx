@@ -1,16 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 } from "uuid";
 import { ICatalogContent } from "@/types/catalogContent";
+import { ICatalogItem } from "@/types/catalogItem";
 import CatalogLink from "./CatalogLink";
 import styles from "./Catalog.module.scss";
-
-//TEMPORARY FAKE DATA
-import { catalogItems } from "../../../FAKE DATA/catalogItems";
+import axios from "axios";
 
 const Catalog = () => {
-  const [selectedContent, setSelectedContent] = useState<ICatalogContent[]>(
-    catalogItems[0].content
-  );
+  const [catalogItems, setCatalogItems] = useState<ICatalogItem[]>([]);
+  const [selectedContent, setSelectedContent] = useState<ICatalogContent[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3005/catalogItems");
+
+        setCatalogItems(response.data);
+        setSelectedContent(response.data[0].content);
+      } catch (error) {
+        console.error("Error with fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className={styles.catalog}>
