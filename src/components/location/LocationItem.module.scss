@@ -1,13 +1,14 @@
-.locationItem{
-    display: inline-block;
-    border: 1px solid black;
-    margin: 2px;
-    padding: 2px;
-    font: 12px normal Times;
-    background-color: darkgrey;
-    color: black;
-    
-    &:hover {
-        color:yellow;
-    }
+.locationItem {
+  display: inline-block;
+  border-radius: 5px;
+  margin: 2px;
+  padding: 2px;
+  font: 12px normal Times;
+  background-color: white;
+  color: green;
+
+  &:hover {
+    background-color: green;
+    color: white;
+  }
 }

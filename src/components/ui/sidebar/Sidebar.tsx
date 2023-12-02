@@ -1,39 +1,34 @@
-import Sides from "../../../utils/enums"
-import React, {useState, FC, PropsWithChildren} from "react"
-import styles from "./Sidebar.module.scss"
-interface SidebarProps{
-    title: string;
-    isOpen: boolean;
-    onClose: ()=> void;
-    side: Sides
+import Sides from "../../../utils/enums";
+import React, { useState, FC, PropsWithChildren, useEffect } from "react";
+import styles from "./Sidebar.module.scss";
+import { useKeyDown } from "../../../hooks/useKeyDown";
+interface SidebarProps {
+  title: string;
+  onClose: () => void;
+  side: Sides;
 }
 
 const Sidebar: FC<PropsWithChildren<SidebarProps>> = ({
-    isOpen, 
-    onClose,
-    side,
-    children,
-    title
+  side,
+  children,
+  title,
+  onClose,
 }) => {
-    const closeSidebar = ()=>{
-        onClose();
-    };
+  useKeyDown("escape", onClose);
 
-    return(
-        <>
-        {isOpen && (
-            <div className={styles.sidebar}>
-                <div className={styles.header}>
-                    <div className={styles.title}>{title}</div>
-                    <div className={styles.close} onClick={closeSidebar}>&times;</div>
-                </div>
-                {children}
-            </div>
-        )}
-        </>
-    )
-}
+  return (
+    <>
+      <div className={styles.sidebar}>
+        <div className={styles.header}>
+          <div className={styles.title}>{title}</div>
+          <div className={styles.close} onClick={onClose}>
+            &times;
+          </div>
+        </div>
+        <div className={styles.content}>{children}</div>
+      </div>
+    </>
+  );
+};
 
 export default Sidebar;
-
-    
