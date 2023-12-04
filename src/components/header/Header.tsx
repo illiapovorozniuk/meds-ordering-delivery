@@ -4,10 +4,11 @@ import styles from "./Header.module.scss";
 import Link from "next/link";
 import NavigationButton from "../ui/navigationButton/NavigationButton";
 import Modal from "../ui/modal/Modal";
-import Sidebar from "../ui/sidebar/Sidebar"
+import Sidebar from "../ui/sidebar/Sidebar";
 import Catalog from "../catalog/Catalog";
 import Location from "../location/Location";
-import Sides from "../../utils/enums"
+import Sides from "../../utils/enums";
+import SignIn from "../login/SignIn";
 
 const Header = () => {
   const [isModalCatalogOpen, setIsModuleCatalogOpen] = useState<boolean>(false);
@@ -15,12 +16,16 @@ const Header = () => {
     setIsModuleCatalogOpen(!isModalCatalogOpen);
   };
 
-  const [isSidebarLocationOpen, setIsSidebarLocationOpen] = useState<boolean>(false);
-  const changeIsSidebarLocation = ()=>{
+  const [isSidebarLocationOpen, setIsSidebarLocationOpen] =
+    useState<boolean>(false);
+  const changeIsSidebarLocation = () => {
     setIsSidebarLocationOpen(!isSidebarLocationOpen);
-  }
+  };
 
-
+  const [isModalLoginOpen, setIsModalLoginOpen] = useState<boolean>(false);
+  const changeIsModalLoginOpe = () => {
+    setIsModalLoginOpen(!isModalLoginOpen);
+  };
 
   return (
     <header className={styles.header}>
@@ -37,9 +42,32 @@ const Header = () => {
         <NavigationButton onClick={changeIsSidebarLocation}>
           Location
         </NavigationButton>
-        <Sidebar isOpen={isSidebarLocationOpen} onClose={changeIsSidebarLocation} side={Sides.Left} title="Select your current city">
+        <Sidebar
+          isOpen={isSidebarLocationOpen}
+          onClose={changeIsSidebarLocation}
+          side={Sides.Left}
+          title="Select your current city"
+        >
           <Location />
         </Sidebar>
+        {!!localStorage.getItem("user") ? (
+          <NavigationButton
+            onClick={() => {
+              localStorage.removeItem("user");
+              location.reload();
+            }}
+          >
+            Sign out
+          </NavigationButton>
+        ) : (
+          <NavigationButton onClick={changeIsModalLoginOpe}>
+            Sign in
+          </NavigationButton>
+        )}
+
+        <Modal isOpen={isModalLoginOpen} onClose={changeIsModalLoginOpe}>
+          <SignIn />
+        </Modal>
       </div>
     </header>
   );
