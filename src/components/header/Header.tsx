@@ -9,8 +9,12 @@ import Catalog from "../catalog/Catalog";
 import Location from "../location/Location";
 import Sides from "../../utils/enums";
 import SignIn from "../login/SignIn";
+import ThemeSwitcher from "../themeSwitcher/themeSwitcher";
 
-const Header = () => {
+const Header: React.FC<{ isDarkMode: boolean; onToggleTheme: () => void }> = ({
+  isDarkMode,
+  onToggleTheme,
+}) => {
   const [isModalCatalogOpen, setIsModuleCatalogOpen] = useState<boolean>(false);
   const changeIsModalCatalog = () => {
     setIsModuleCatalogOpen(!isModalCatalogOpen);
@@ -21,7 +25,6 @@ const Header = () => {
   function handleLocationOpen() {
     setIsSidebarLocationOpen((isOpen) => !isOpen);
   }
-
 
   const [isModalLoginOpen, setIsModalLoginOpen] = useState<boolean>(false);
   const changeIsModalLoginOpe = () => {
@@ -53,7 +56,7 @@ const Header = () => {
             <Location />
           </Sidebar>
         ) : null}
-        
+
         {!!localStorage.getItem("user") ? (
           <NavigationButton
             onClick={() => {
@@ -68,7 +71,7 @@ const Header = () => {
             Sign in
           </NavigationButton>
         )}
-
+        <ThemeSwitcher isDarkMode={isDarkMode} onToggleTheme={onToggleTheme} />
         <Modal isOpen={isModalLoginOpen} onClose={changeIsModalLoginOpe}>
           <SignIn />
         </Modal>
