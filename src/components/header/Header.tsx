@@ -9,6 +9,7 @@ import Catalog from "../catalog/Catalog";
 import Location from "../location/Location";
 import Sides from "../../utils/enums";
 import SignIn from "../login/SignIn";
+import RegistrationForm from "../registration/RegistrationForm";
 
 const Header = () => {
   const [isModalCatalogOpen, setIsModuleCatalogOpen] = useState<boolean>(false);
@@ -18,14 +19,27 @@ const Header = () => {
 
   const [isSidebarLocationOpen, setIsSidebarLocationOpen] =
     useState<boolean>(false);
+
   function handleLocationOpen() {
     setIsSidebarLocationOpen((isOpen) => !isOpen);
   }
-
+  function handleSignn() {
+    setIsSidebarLocationOpen((isOpen) => !isOpen);
+  }
+  function handleSignUp() {
+    setIsModalRegisterOpen((isOpen) => !isOpen);
+  }
 
   const [isModalLoginOpen, setIsModalLoginOpen] = useState<boolean>(false);
-  const changeIsModalLoginOpe = () => {
+  const changeIsModalLoginOpen = () => {
     setIsModalLoginOpen(!isModalLoginOpen);
+  };
+
+  const [isModalRegisterOpen, setIsModalRegisterOpen] =
+    useState<boolean>(false);
+
+  const changeIsModalSignUpOpen = () => {
+    setIsModalRegisterOpen(!isModalRegisterOpen);
   };
 
   return (
@@ -53,7 +67,7 @@ const Header = () => {
             <Location />
           </Sidebar>
         ) : null}
-        
+
         {!!localStorage.getItem("user") ? (
           <NavigationButton
             onClick={() => {
@@ -64,13 +78,25 @@ const Header = () => {
             Sign out
           </NavigationButton>
         ) : (
-          <NavigationButton onClick={changeIsModalLoginOpe}>
-            Sign in
-          </NavigationButton>
+          <div>
+            <NavigationButton onClick={changeIsModalLoginOpen}>
+              Sign in
+            </NavigationButton>
+            <NavigationButton onClick={handleSignUp}>Sign up</NavigationButton>
+          </div>
         )}
 
-        <Modal isOpen={isModalLoginOpen} onClose={changeIsModalLoginOpe}>
+        <Modal isOpen={isModalLoginOpen} onClose={changeIsModalLoginOpen}>
           <SignIn />
+        </Modal>
+
+        <Modal isOpen={isModalRegisterOpen} onClose={changeIsModalSignUpOpen}>
+          <RegistrationForm
+            onSubmit={() => {
+              alert("You successfylly registered!!!");
+              changeIsModalSignUpOpen();
+            }}
+          />
         </Modal>
       </div>
     </header>
