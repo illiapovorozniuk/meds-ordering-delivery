@@ -4,39 +4,31 @@ import { ICatalogContent } from "@/types/catalogContent";
 import { ICatalogItem } from "@/types/catalogItem";
 import CatalogLink from "./CatalogLink";
 import styles from "./Catalog.module.scss";
-import axios from "axios";
+import CatalogContentItem from "./CatalogContentItem";
+import { useGetCatalogItemsQuery } from "@/store/catalogItems/catalogItem.api";
 
 const Catalog = () => {
-  const [catalogItems, setCatalogItems] = useState<ICatalogItem[]>([]);
+  const { data, isLoading, error } = useGetCatalogItemsQuery(10);
   const [selectedContent, setSelectedContent] = useState<ICatalogContent[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3005/catalogItems");
-
-        setCatalogItems(response.data);
-        setSelectedContent(response.data[0].content);
-      } catch (error) {
-        console.error("Error with fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <div className={styles.catalog}>
       <div className={styles.links}>
-        {catalogItems.map((item) => (
-          <CatalogLink
-            img={item.img}
-            title={item.title}
-            content={item.content}
-            setSelectedContent={setSelectedContent}
-            key={v4()}
-          />
-        ))}
+        {isLoading ? (
+          "loading"
+        ) : error ? (
+          <div>{error}</div>
+        ) : (
+          data?.map((item: ICatalogItem) => (
+            <CatalogLink
+              img={item.img}
+              title={item.title}
+              content={item.content}
+              setSelectedContent={setSelectedContent}
+              key={v4()}
+            />
+          ))
+        )}
       </div>
       <div className={styles.content}>
         {selectedContent.map((content) => (
@@ -53,5 +45,3 @@ const Catalog = () => {
 };
 
 export default Catalog;
-import CatalogItem from "./CatalogLink";
-import CatalogContentItem from "./CatalogContentItem";
